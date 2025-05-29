@@ -2,9 +2,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
     initializeScrollEffects();
-    initializeMobileMenu();
     carregarAlertas();
     initializeSectionAnimations();
+
+    // ===== MENU MOBILE HAMBÚRGUER =====
+    // Controle centralizado do menu mobile, overlay e acessibilidade
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const body = document.body;
+
+    function closeMenu() {
+        navLinks.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    if (menuToggle && navLinks && menuOverlay) {
+        menuToggle.addEventListener('click', function(e) {
+            const isActive = navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active', isActive);
+            body.classList.toggle('menu-open', isActive);
+            menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        });
+        menuOverlay.addEventListener('click', closeMenu);
+        // Fecha ao clicar em um link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        // Fecha ao redimensionar para desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) closeMenu();
+        });
+    }
+    // ===== FIM MENU MOBILE HAMBÚRGUER =====
 });
 
 // Função para gerenciar a navegação
@@ -80,76 +112,27 @@ function initializeTheme() {
     }
 }
 
-// Função para controlar o menu mobile
-function initializeMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const body = document.body;
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            
-            // Atualiza o estado do menu
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            
-            if (isExpanded) {
-                // Fecha o menu
-                navLinks.classList.remove('active');
-                navLinks.style.transform = 'translateX(-100%)';
-                body.style.overflow = 'auto';
-            } else {
-                // Abre o menu
-                navLinks.classList.add('active');
-                navLinks.style.transform = 'translateX(0)';
-                body.style.overflow = 'hidden';
+// Função para animar seções com IntersectionObserver
+function initializeSectionAnimations() {
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('ativo');
+                // Opcional: desobserva após a animação
+                // observer.unobserve(entry.target);
             }
         });
+    }, {
+        threshold: 0.1, // 10% da seção visível
+        rootMargin: '0px 0px -50px 0px' // Inicia a animação um pouco antes
+    });
 
-        // Fecha o menu ao clicar em um link
-        const navItems = navLinks.querySelectorAll('a');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                navLinks.style.transform = 'translateX(-100%)';
-                body.style.overflow = 'auto';
-                menuToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        // Fecha o menu ao clicar fora
-        document.addEventListener('click', function(e) {
-            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('active');
-                navLinks.style.transform = 'translateX(-100%)';
-                body.style.overflow = 'auto';
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-
-        // Fecha o menu ao redimensionar a janela para desktop
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                navLinks.classList.remove('active');
-                navLinks.style.transform = 'translateX(-100%)';
-                body.style.overflow = 'auto';
-                menuToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+    // Adiciona classe fade-in e observa cada seção
+    sections.forEach(section => {
+        section.classList.add('fade-in');
+        observer.observe(section);
     });
 }
 
@@ -215,28 +198,4 @@ function carregarAlertas() {
 }
 
 // Atualiza os alertas a cada 5 segundos
-setInterval(carregarAlertas, 5000);
-
-// Função para animar seções com IntersectionObserver
-function initializeSectionAnimations() {
-    const sections = document.querySelectorAll('section');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('ativo');
-                // Opcional: desobserva após a animação
-                // observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1, // 10% da seção visível
-        rootMargin: '0px 0px -50px 0px' // Inicia a animação um pouco antes
-    });
-
-    // Adiciona classe fade-in e observa cada seção
-    sections.forEach(section => {
-        section.classList.add('fade-in');
-        observer.observe(section);
-    });
-} 
+setInterval(carregarAlertas, 5000); 

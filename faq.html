@@ -6,122 +6,8 @@
     <title>Alerta Já! - Perguntas Frequentes</title>
     <meta name="description" content="Tire suas dúvidas sobre o sistema de alerta de enchentes Alerta Já!">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu-mobile.css">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <style>
-        .faq-section {
-            padding: 4rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-section h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .faq-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .faq-question {
-            background: #fff;
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: #f8f9fa;
-        }
-
-        .faq-question h3 {
-            margin: 0;
-            color: #2c3e50;
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-
-        .faq-toggle {
-            width: 24px;
-            height: 24px;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-toggle::before,
-        .faq-toggle::after {
-            content: '';
-            position: absolute;
-            background: #3498db;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-toggle::before {
-            width: 2px;
-            height: 16px;
-            top: 4px;
-            left: 11px;
-        }
-
-        .faq-toggle::after {
-            width: 16px;
-            height: 2px;
-            top: 11px;
-            left: 4px;
-        }
-
-        .faq-item.active .faq-toggle::before {
-            transform: rotate(90deg);
-        }
-
-        .faq-answer {
-            background: #fff;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-answer p {
-            margin: 0;
-            padding: 1.5rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            border-top: 1px solid #eee;
-        }
-
-        @media (max-width: 768px) {
-            .faq-section {
-                padding: 2rem 1rem;
-            }
-
-            .faq-section h2 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-
-            .faq-question h3 {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -129,7 +15,12 @@
             <div class="logo">
                 <h1>Alerta Já!</h1>
             </div>
-            <ul class="nav-links">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="menu-mobile">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solucao.html">Solução</a></li>
                 <li><a href="faq.html" class="active" aria-current="page">FAQ</a></li>
@@ -138,6 +29,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay"></div>
 
     <main>
         <section class="faq-section" aria-labelledby="faq-title">
@@ -263,5 +155,7 @@
             });
         });
     </script>
+    <script src="js/main.js"></script>
+    <script src="js/emergency.js"></script>
 </body>
 </html> 

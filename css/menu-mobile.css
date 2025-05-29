@@ -1,0 +1,109 @@
+/* =========================
+   MENU HAMBÚRGUER MOBILE
+   ========================= */
+@media (max-width: 768px) {
+    /* Botão do menu hambúrguer */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--espaco-xs);
+        z-index: 2102; /* acima do overlay */
+        width: 40px;
+        height: 40px;
+        position: relative;
+    }
+    .menu-toggle:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--primary-color);
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    /* Animação do hambúrguer para X */
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Menu lateral (nav-links) */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100vw;
+        width: 80vw;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--bg-light, #fff);
+        box-shadow: var(--shadow-md, 0 4px 24px rgba(23,78,166,0.08));
+        flex-direction: column;
+        align-items: flex-start;
+        z-index: 2100;
+        gap: var(--espaco-md);
+        padding: var(--espaco-xl) var(--espaco-md);
+        transition: right 0.3s cubic-bezier(.4,0,.2,1);
+        overflow-y: auto;
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .nav-links li {
+        margin: var(--espaco-md) 0;
+    }
+    .nav-links a {
+        font-size: 1.1rem;
+        display: block;
+        padding: var(--espaco-sm);
+        color: var(--primary-color);
+        background: none;
+    }
+
+    /* Overlay escurecendo o fundo quando o menu está aberto */
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.4);
+        z-index: 2099;
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .menu-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Impede o scroll do body quando o menu está aberto */
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* Logo escura no mobile */
+    .logo h1 {
+        color: var(--primary-color);
+    }
+
+    /* Header/nav fundo claro no mobile */
+    header, nav {
+        background: var(--bg-light, #fff);
+        box-shadow: var(--shadow-md, 0 4px 24px rgba(23,78,166,0.08));
+    }
+}
+/* =========================
+   FIM MENU HAMBÚRGUER MOBILE
+   ========================= */ 

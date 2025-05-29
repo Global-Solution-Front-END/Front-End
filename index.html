@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta Já! - Proteja-se contra enchentes</title>
+    <meta name="description" content="Sistema de alerta de enchentes em tempo real para sua segurança">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 6rem 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cards-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: #f8f9fa;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav aria-label="Navegação principal">
+            <div class="logo">
+                <h1>Alerta Já!</h1>
+            </div>
+            <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="solucao.html">Solução</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="integrantes.html">Integrantes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Proteja-se contra enchentes!</h1>
+            <p>Sistema de alerta em tempo real para sua segurança</p>
+        </section>
+
+        <section class="cards-section" aria-labelledby="cards-title">
+            <h2 id="cards-title" class="visually-hidden">Informações sobre o sistema</h2>
+            <div class="cards-grid">
+                <article class="card">
+                    <h2>O Problema</h2>
+                    <p>Enchentes são um problema recorrente em muitas cidades brasileiras, causando danos materiais e colocando vidas em risco. A falta de um sistema eficiente de alerta agrava ainda mais a situação.</p>
+                </article>
+
+                <article class="card">
+                    <h2>Nossa Solução</h2>
+                    <p>O Alerta Já! utiliza tecnologia avançada para monitorar níveis de água e condições climáticas, enviando alertas em tempo real para os usuários em áreas de risco.</p>
+                </article>
+
+                <article class="card">
+                    <h2>Como Funciona</h2>
+                    <p>Através de sensores e análise de dados em tempo real, nosso sistema identifica riscos de enchente e notifica os usuários através do aplicativo, permitindo que tomem medidas preventivas.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="alertas-recentes" aria-labelledby="alertas-title">
+            <h2 id="alertas-title" class="visually-hidden">Alertas Recentes</h2>
+            <!-- Os alertas serão inseridos aqui via JavaScript -->
+        </section>
+
+        <section class="cta-section" aria-labelledby="cta-title">
+            <h2 id="cta-title" class="visually-hidden">Chamada para ação</h2>
+            <a href="#" class="cta-button" aria-label="Baixar aplicativo Alerta Já!">
+                Baixar App
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook do Alerta Já!">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="Twitter do Alerta Já!">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="Instagram do Alerta Já!">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2024 Alerta Já! - Todos os direitos reservados</p>
+        <a href="integrantes.html" aria-label="Conheça nossa equipe">Integrantes</a>
+    </footer>
+
+    <!-- Botão de Emergência -->
+    <button class="emergency-button" aria-label="Números de Emergência">
+        <svg viewBox="0 0 24 24">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+    </button>
+
+    <!-- Modal de Emergência -->
+    <div class="emergency-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <h2>Números de Emergência</h2>
+            
+            <div class="emergency-number">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <a href="tel:199">Defesa Civil: 199</a>
+            </div>
+            
+            <div class="emergency-number">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <a href="tel:192">SAMU: 192</a>
+            </div>
+            
+            <div class="emergency-number">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <a href="tel:193">Bombeiros: 193</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/emergency.js"></script>
+</body>
+</html> 

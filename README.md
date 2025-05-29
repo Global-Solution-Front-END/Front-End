@@ -7,13 +7,13 @@ O Alerta Já! é uma plataforma web desenvolvida para facilitar a comunicação 
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
-- API de Geolocalização
-- API de Mapas
+- API de Geolocalização(Não Utilizada, Apenas Demonstração)
+- API de Mapas(Não Utilizada, Apenas Demonstração)
+- API de Geolocalização(Não Utilizada, Apenas Demonstração)
 
 ## Integrantes
-- [Nome do Integrante 1] - RM: [RM] - [GitHub](link) - [LinkedIn](link)
-- [Nome do Integrante 2] - RM: [RM] - [GitHub](link) - [LinkedIn](link)
-- [Nome do Integrante 3] - RM: [RM] - [GitHub](link) - [LinkedIn](link)
+- [João Vitor Lacerda] - RM: [565565] - [GitHub](https://github.com/joaolacerdaconsorte) - [LinkedIn](link)
+- [Enzo Ricarte Medeiros] - RM: [566053] - [GitHub](https://github.com/ricarteenzo) - [LinkedIn](link)
 
 ## Como Executar
 1. Clone este repositório
@@ -32,9 +32,11 @@ alerta-ja/
 │   ├── images/
 │   └── icons/
 ├── css/
-│   └── styles.css
+│   ├── styles.css
+│   └── menu-mobile.css
 └── js/
     ├── main.js
+    ├── emergency.js
     ├── form-validation.js
     └── mapa-interativo.js
 ``` 

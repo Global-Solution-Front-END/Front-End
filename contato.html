@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta Já! - Contato</title>
+    <meta name="description" content="Entre em contato com a equipe do Alerta Já! - Sistema de alerta de enchentes">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    <style>
+        .contato-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contato-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .erro {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .btn-enviar {
+            background: #3498db;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-enviar:hover {
+            background: #2980b9;
+        }
+
+        .mapa-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .mapa-container h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .mapa-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .mapa-legenda {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .legenda-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .legenda-cor {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        .risco-alto { background: #e74c3c; }
+        .risco-medio { background: #f1c40f; }
+        .risco-baixo { background: #2ecc71; }
+
+        @media (max-width: 768px) {
+            .contato-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contato-section {
+                padding: 2rem 1rem;
+            }
+
+            .contato-section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav aria-label="Navegação principal">
+            <div class="logo">
+                <h1>Alerta Já!</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="solucao.html">Solução</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contato.html" class="active" aria-current="page">Contato</a></li>
+                <li><a href="integrantes.html">Integrantes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contato-section" aria-labelledby="contato-title">
+            <h2 id="contato-title">Entre em Contato</h2>
+            <div class="contato-grid">
+                <div class="form-container">
+                    <form id="contatoForm" novalidate>
+                        <div class="form-group">
+                            <label for="nome">Nome *</label>
+                            <input type="text" id="nome" name="nome" required>
+                            <span class="erro" id="nomeErro">Por favor, insira seu nome.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="erro" id="emailErro">Por favor, insira um e-mail válido.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem *</label>
+                            <textarea id="mensagem" name="mensagem" required></textarea>
+                            <span class="erro" id="mensagemErro">Por favor, insira sua mensagem.</span>
+                        </div>
+
+                        <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+                <div class="mapa-container">
+                    <h3>Áreas de Risco</h3>
+                    <img src="assets/images/mapa-areas-risco.jpg" alt="Mapa de áreas de risco de enchentes em São Paulo e Rio de Janeiro" class="mapa-risco">
+                    <div class="mapa-legenda">
+                        <div class="legenda-item">
+                            <span class="legenda-cor risco-alto"></span>
+                            Risco Alto
+                        </div>
+                        <div class="legenda-item">
+                            <span class="legenda-cor risco-medio"></span>
+                            Risco Médio
+                        </div>
+                        <div class="legenda-item">
+                            <span class="legenda-cor risco-baixo"></span>
+                            Risco Baixo
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook do Alerta Já!">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="Twitter do Alerta Já!">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                </svg>
+            </a>
+            <a href="#" aria-label="Instagram do Alerta Já!">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2024 Alerta Já! - Todos os direitos reservados</p>
+        <a href="integrantes.html" aria-label="Conheça nossa equipe">Integrantes</a>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contatoForm');
+            const nomeInput = document.getElementById('nome');
+            const emailInput = document.getElementById('email');
+            const mensagemInput = document.getElementById('mensagem');
+
+            function validarEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+
+            function mostrarErro(input, mensagem) {
+                const erroElement = document.getElementById(input.id + 'Erro');
+                erroElement.textContent = mensagem;
+                erroElement.style.display = 'block';
+                input.style.borderColor = '#e74c3c';
+            }
+
+            function limparErro(input) {
+                const erroElement = document.getElementById(input.id + 'Erro');
+                erroElement.style.display = 'none';
+                input.style.borderColor = '#e0e0e0';
+            }
+
+            function validarCampo(input, validacao) {
+                if (!validacao(input.value)) {
+                    mostrarErro(input, input.dataset.mensagemErro);
+                    return false;
+                }
+                limparErro(input);
+                return true;
+            }
+
+            nomeInput.dataset.mensagemErro = 'Por favor, insira seu nome.';
+            emailInput.dataset.mensagemErro = 'Por favor, insira um e-mail válido.';
+            mensagemInput.dataset.mensagemErro = 'Por favor, insira sua mensagem.';
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let valido = true;
+
+                // Validação do nome
+                if (!validarCampo(nomeInput, value => value.trim() !== '')) {
+                    valido = false;
+                }
+
+                // Validação do email
+                if (!validarCampo(emailInput, validarEmail)) {
+                    valido = false;
+                }
+
+                // Validação da mensagem
+                if (!validarCampo(mensagemInput, value => value.trim() !== '')) {
+                    valido = false;
+                }
+
+                if (valido) {
+                    alert('Mensagem enviada com sucesso!');
+                    form.reset();
+                }
+            });
+
+            // Validação em tempo real
+            [nomeInput, emailInput, mensagemInput].forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        if (this.type === 'email' && !validarEmail(this.value)) {
+                            mostrarErro(this, 'Por favor, insira um e-mail válido.');
+                        } else {
+                            limparErro(this);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

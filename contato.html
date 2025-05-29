@@ -6,150 +6,8 @@
     <title>Alerta Já! - Contato</title>
     <meta name="description" content="Entre em contato com a equipe do Alerta Já! - Sistema de alerta de enchentes">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu-mobile.css">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <style>
-        .contato-section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contato-section h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .contato-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .form-container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .erro {
-            color: #e74c3c;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .btn-enviar {
-            background: #3498db;
-            color: #fff;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
-
-        .btn-enviar:hover {
-            background: #2980b9;
-        }
-
-        .mapa-container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .mapa-container h3 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .mapa-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .mapa-legenda {
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .legenda-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .legenda-cor {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-        }
-
-        .risco-alto { background: #e74c3c; }
-        .risco-medio { background: #f1c40f; }
-        .risco-baixo { background: #2ecc71; }
-
-        @media (max-width: 768px) {
-            .contato-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .contato-section {
-                padding: 2rem 1rem;
-            }
-
-            .contato-section h2 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -157,7 +15,12 @@
             <div class="logo">
                 <h1>Alerta Já!</h1>
             </div>
-            <ul class="nav-links">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="menu-mobile">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solucao.html">Solução</a></li>
                 <li><a href="faq.html">FAQ</a></li>
@@ -166,6 +29,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay"></div>
 
     <main>
         <section class="contato-section" aria-labelledby="contato-title">
@@ -335,5 +199,7 @@
             });
         });
     </script>
+    <script src="js/main.js"></script>
+    <script src="js/emergency.js"></script>
 </body>
 </html> 

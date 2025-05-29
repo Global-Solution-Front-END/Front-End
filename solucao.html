@@ -6,202 +6,8 @@
     <title>Alerta Já! - Nossa Solução</title>
     <meta name="description" content="Conheça a solução Alerta Já! - Sistema inteligente de alerta de enchentes">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu-mobile.css">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <style>
-        .solucao-section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .solucao-section h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .solucao-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .mockup-container {
-            position: relative;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .mockup-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .funcionalidades {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .funcionalidades h3 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .funcionalidades ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .funcionalidades li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .funcionalidades li:hover {
-            transform: translateX(10px);
-        }
-
-        .funcionalidades li::before {
-            content: '✓';
-            color: #2ecc71;
-            font-weight: bold;
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .tecnologias {
-            margin-top: 4rem;
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .tecnologias h3 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .tecnologias-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .tecnologia-card {
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .tecnologia-card h4 {
-            color: #2c3e50;
-            margin: 1rem 0;
-        }
-
-        .tecnologia-card p {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .btn-simular {
-            display: block;
-            width: 200px;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            background: #e74c3c;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-simular:hover {
-            background: #c0392b;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .modal-content h3 {
-            color: #e74c3c;
-            margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-fechar {
-            background: #3498db;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-fechar:hover {
-            background: #2980b9;
-        }
-
-        @media (max-width: 768px) {
-            .solucao-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .solucao-section {
-                padding: 2rem 1rem;
-            }
-
-            .solucao-section h2 {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -209,7 +15,12 @@
             <div class="logo">
                 <h1>Alerta Já!</h1>
             </div>
-            <ul class="nav-links">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="menu-mobile">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solucao.html" class="active" aria-current="page">Solução</a></li>
                 <li><a href="faq.html">FAQ</a></li>
@@ -218,6 +29,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay"></div>
 
     <main>
         <section class="solucao-section" aria-labelledby="solucao-title">
@@ -257,6 +69,61 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Mapa Interativo Google Maps -->
+            <section class="mapa-google-section" aria-labelledby="mapa-title">
+                <h3 id="mapa-title">Mapa Interativo de Áreas de Risco</h3>
+                <div id="map" class="mapa-google-mapa"></div>
+                <p style="margin-top:1rem;color:#555;font-size:0.98rem;">Arraste e aproxime para visualizar áreas de risco em São Paulo.</p>
+            </section>
+
+            <!-- FIM Mapa Interativo -->
+
+            <!-- NOVO CONTEÚDO SOBRE O TEMA -->
+            <section class="contexto-enchentes" aria-labelledby="contexto-title">
+                <h3 id="contexto-title">Por que o Alerta Já! é importante?</h3>
+                <p>
+                    As enchentes são um dos maiores desafios enfrentados por cidades brasileiras, causando prejuízos materiais, riscos à vida e impactos sociais severos. Muitas vezes, a população não recebe alertas a tempo ou não sabe como agir diante de uma emergência. O <strong>Alerta Já!</strong> surge para preencher essa lacuna, oferecendo informação rápida, confiável e acessível para todos.
+                </p>
+                <ul>
+                    <li><strong>Prevenção:</strong> Alertas antecipados ajudam a salvar vidas e reduzir danos.</li>
+                    <li><strong>Comunicação eficiente:</strong> Notificações chegam diretamente no WhatsApp e SMS, mesmo para quem não tem internet constante.</li>
+                    <li><strong>Engajamento comunitário:</strong> Permite que vizinhos compartilhem informações e se ajudem mutuamente.</li>
+                </ul>
+            </section>
+
+            <section class="como-funciona" aria-labelledby="funciona-title">
+                <h3 id="funciona-title">Como funciona o Alerta Já!</h3>
+                <ol>
+                    <li><strong>Monitoramento:</strong> O sistema coleta dados de chuva, nível de rios e previsões meteorológicas em tempo real.</li>
+                    <li><strong>Análise inteligente:</strong> Algoritmos identificam padrões de risco e disparam alertas automáticos.</li>
+                    <li><strong>Envio de alertas:</strong> Usuários recebem notificações personalizadas por região e canal preferido.</li>
+                    <li><strong>Ação rápida:</strong> O botão de emergência permite pedir ajuda ou avisar autoridades instantaneamente.</li>
+                </ol>
+            </section>
+
+            <section class="beneficios" aria-labelledby="beneficios-title">
+                <h3 id="beneficios-title">Benefícios para a Comunidade</h3>
+                <ul>
+                    <li>Redução de riscos e prejuízos em enchentes</li>
+                    <li>Maior sensação de segurança para famílias</li>
+                    <li>Facilidade de acesso à informação crítica</li>
+                    <li>Fortalecimento da rede de apoio local</li>
+                </ul>
+            </section>
+
+            <section class="mini-faq" aria-labelledby="mini-faq-title">
+                <h3 id="mini-faq-title">Perguntas Rápidas sobre a Solução</h3>
+                <dl>
+                    <dt>O Alerta Já! é gratuito?</dt>
+                    <dd>Sim, o acesso aos alertas e funcionalidades básicas é totalmente gratuito para a população.</dd>
+                    <dt>Funciona em qualquer cidade?</dt>
+                    <dd>Atualmente, o foco é em regiões de maior risco, mas o sistema está em expansão para todo o Brasil.</dd>
+                    <dt>Preciso baixar algum aplicativo?</dt>
+                    <dd>Não necessariamente. Você pode receber alertas por WhatsApp, SMS ou acessar pelo site.</dd>
+                </dl>
+            </section>
+            <!-- FIM NOVO CONTEÚDO -->
 
             <button class="btn-simular" id="btnSimular">Simular Alerta</button>
         </section>
@@ -335,5 +202,23 @@
             });
         });
     </script>
+    <script src="js/main.js"></script>
+    <script src="js/emergency.js"></script>
+    <!-- Google Maps API (substitua SUA_CHAVE_API pelo seu token) -->
+    <script>
+      function initMap() {
+        var sp = { lat: -23.55052, lng: -46.633308 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: sp
+        });
+        var marker = new google.maps.Marker({
+          position: sp,
+          map: map,
+          title: 'Centro de São Paulo - Área de Risco'
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDicU7y0SpjZSFiURyLx0Zhl7Fhp4AxhoQ&callback=initMap"></script>
 </body>
 </html> 

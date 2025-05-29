@@ -27,9 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
         });
         menuOverlay.addEventListener('click', closeMenu);
-        // Fecha ao clicar em um link
+        // Fecha ao clicar em um link, mas só depois do clique ser processado
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', function() {
+                setTimeout(closeMenu, 100);
+            });
         });
         // Fecha ao redimensionar para desktop
         window.addEventListener('resize', function() {

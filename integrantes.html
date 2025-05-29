@@ -6,109 +6,8 @@
     <title>Alerta Já! - Nossa Equipe</title>
     <meta name="description" content="Conheça a equipe por trás do Alerta Já! - Sistema de alerta de enchentes">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/menu-mobile.css">
     <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-    <style>
-        .equipe {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .equipe h2 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-
-        .equipe-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .membro {
-            background: #fff;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .membro:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .membro-foto {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            object-fit: cover;
-            border: 4px solid #3498db;
-        }
-
-        .membro h3 {
-            color: #2c3e50;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .membro-info {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .membro-info p {
-            margin: 0.3rem 0;
-        }
-
-        .membro-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .membro-links a {
-            color: #2c3e50;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .membro-links a:hover {
-            color: #3498db;
-        }
-
-        .membro-links svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        @media (max-width: 1024px) {
-            .equipe-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .equipe-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .membro-foto {
-                width: 250px;
-                height: 250px;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -116,7 +15,12 @@
             <div class="logo">
                 <h1>Alerta Já!</h1>
             </div>
-            <ul class="nav-links">
+            <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="menu-mobile">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="solucao.html">Solução</a></li>
                 <li><a href="faq.html">FAQ</a></li>
@@ -125,6 +29,7 @@
             </ul>
         </nav>
     </header>
+    <div class="menu-overlay"></div>
 
     <main>
         <section class="equipe" aria-labelledby="equipe-title">
@@ -132,13 +37,13 @@
             <div class="equipe-grid">
                 <div class="membro">
                     <img src="assets/images/team/member1.jpg" alt="Nome do Membro 1" class="membro-foto">
-                    <h3>Nome do Membro 1</h3>
+                    <h3>João Vitor Lacerda</h3>
                     <div class="membro-info">
-                        <p>RM: 123456</p>
-                        <p>Turma: 1TDSPX</p>
+                        <p>RM: 565565</p>
+                        <p>Turma: 1TDSPH</p>
                     </div>
                     <div class="membro-links">
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub do Membro 1">
+                        <a href="https://github.com/joaolacerdaconsorte" target="_blank" rel="noopener noreferrer" aria-label="GitHub do Membro 1">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
@@ -155,13 +60,13 @@
 
                 <div class="membro">
                     <img src="assets/images/team/member2.jpg" alt="Nome do Membro 2" class="membro-foto">
-                    <h3>Nome do Membro 2</h3>
+                    <h3>Enzo Ricarte Medeiros</h3>
                     <div class="membro-info">
-                        <p>RM: 234567</p>
-                        <p>Turma: 1TDSPX</p>
+                        <p>RM: 566053</p>
+                        <p>Turma: 1TDSPH</p>
                     </div>
                     <div class="membro-links">
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub do Membro 2">
+                        <a href="https://github.com/ricarteenzo" target="_blank" rel="noopener noreferrer" aria-label="GitHub do Membro 2">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
@@ -221,5 +126,6 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/emergency.js"></script>
 </body>
 </html> 

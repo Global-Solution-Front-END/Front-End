@@ -201,3 +201,29 @@ function carregarAlertas() {
 
 // Atualiza os alertas a cada 5 segundos
 setInterval(carregarAlertas, 5000); 
+
+//dom content load
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Fecha todos os outros itens
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                }
+            });
+            
+            // Toggle do item atual
+            item.classList.toggle('active');
+            answer.style.maxHeight = isActive ? '0' : answer.scrollHeight + 'px';
+        });
+    });
+});

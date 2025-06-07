@@ -234,3 +234,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 }); 
+
+//dom no mapainterativo:
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modalAlerta');
+    const btnSimular = document.getElementById('btnSimular');
+    const btnFechar = document.getElementById('btnFechar');
+
+    btnSimular.addEventListener('click', function() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+
+    btnFechar.addEventListener('click', function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
+//mapa
+function initMap() {
+    var sp = { lat: -23.55052, lng: -46.633308 };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: sp
+    });
+    var marker = new google.maps.Marker({
+      position: sp,
+      map: map,
+      title: 'Centro de São Paulo - Área de Risco'
+    });
+  }

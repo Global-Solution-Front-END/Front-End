@@ -243,3 +243,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 }); 
+
+//parte do script de validação:
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contatoForm');
+    const nomeInput = document.getElementById('nome');
+    const emailInput = document.getElementById('email');
+    const mensagemInput = document.getElementById('mensagem');
+
+    function validarEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    function mostrarErro(input, mensagem) {
+        const erroElement = document.getElementById(input.id + 'Erro');
+        erroElement.textContent = mensagem;
+        erroElement.style.display = 'block';
+        input.style.borderColor = '#e74c3c';
+    }
+
+    function limparErro(input) {
+        const erroElement = document.getElementById(input.id + 'Erro');
+        erroElement.style.display = 'none';
+        input.style.borderColor = '#e0e0e0';
+    }
+
+    function validarCampo(input, validacao) {
+        if (!validacao(input.value)) {
+            mostrarErro(input, input.dataset.mensagemErro);
+            return false;
+        }
+        limparErro(input);
+        return true;
+    }
+
+    nomeInput.dataset.mensagemErro = 'Por favor, insira seu nome.';
+    emailInput.dataset.mensagemErro = 'Por favor, insira um e-mail válido.';
+    mensagemInput.dataset.mensagemErro = 'Por favor, insira sua mensagem.';
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let valido = true;
+
+        // Validação do nome
+        if (!validarCampo(nomeInput, value => value.trim() !== '')) {
+            valido = false;
+        }
+
+        // Validação do email
+        if (!validarCampo(emailInput, validarEmail)) {
+            valido = false;
+        }
+
+        // Validação da mensagem
+        if (!validarCampo(mensagemInput, value => value.trim() !== '')) {
+            valido = false;
+        }
+
+        if (valido) {
+            alert('Mensagem enviada com sucesso!');
+            form.reset();
+        }
+    });
+
+    // Validação em tempo real
+    [nomeInput, emailInput, mensagemInput].forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                if (this.type === 'email' && !validarEmail(this.value)) {
+                    mostrarErro(this, 'Por favor, insira um e-mail válido.');
+                } else {
+                    limparErro(this);
+                }
+            }
+        });
+    });
+});
+  

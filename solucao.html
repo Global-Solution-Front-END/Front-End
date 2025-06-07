@@ -10,6 +10,7 @@
     <script src="js/main.js" defer></script>
     <script src="js/emergency.js" defer></script>
     <script src="js/mapa-interativo.js" defer></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDicU7y0SpjZSFiURyLx0Zhl7Fhp4AxhoQ&callback=initMap" defer></script>
 
     <!--Import dos Arquivos .css -->
     <link rel="stylesheet" href="css/styles.css">
@@ -185,47 +186,5 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const modal = document.getElementById('modalAlerta');
-            const btnSimular = document.getElementById('btnSimular');
-            const btnFechar = document.getElementById('btnFechar');
-
-            btnSimular.addEventListener('click', function() {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-
-            btnFechar.addEventListener('click', function() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-
-            window.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-    </script>
-    <script src="js/main.js"></script>
-    <script src="js/emergency.js"></script>
-    <!-- Google Maps API (substitua SUA_CHAVE_API pelo seu token) -->
-    <script>
-      function initMap() {
-        var sp = { lat: -23.55052, lng: -46.633308 };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: sp
-        });
-        var marker = new google.maps.Marker({
-          position: sp,
-          map: map,
-          title: 'Centro de São Paulo - Área de Risco'
-        });
-      }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDicU7y0SpjZSFiURyLx0Zhl7Fhp4AxhoQ&callback=initMap"></script>
 </body>
 </html> 

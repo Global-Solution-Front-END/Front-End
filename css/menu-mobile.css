@@ -1,6 +1,4 @@
-/* =========================
-   MENU HAMBÚRGUER MOBILE
-   ========================= */
+/* MENU HAMBÚRGUER MOBILE */
 @media (max-width: 768px) {
     /* Botão do menu hambúrguer */
     .menu-toggle {
@@ -113,6 +111,30 @@
         z-index: 997;
     }
 }
-/* =========================
-   FIM MENU HAMBÚRGUER MOBILE
-   ========================= */ 
+   
+/* breakpoints : */
+
+/* Extra Small devices (telefones, 600px e inferior) */
+@media (max-width: 600px) {
+    
+}
+
+/* Small devices (tablets em modo retrato e telefones grandes, 600px e superior) */
+@media (min-width: 600px) {
+   
+}
+
+/* Medium devices (tablets em modo paisagem, 768px e superior) */
+@media (min-width: 768px) {
+    
+}
+
+/* Large devices (laptops/desktops, 992px e superior) */
+@media (min-width: 992px) {
+    
+}
+
+/* Extra-Large devices (laptops e desktops grandes, 1300px e superior) */
+@media (min-width: 1300px) {
+   
+}

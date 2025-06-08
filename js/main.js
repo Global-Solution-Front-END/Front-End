@@ -4,41 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeScrollEffects();
     carregarAlertas();
     initializeSectionAnimations();
-
-    // ===== MENU MOBILE HAMBÚRGUER =====
-    // Controle centralizado do menu mobile, overlay e acessibilidade
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    const body = document.body;
-
-    function closeMenu() {
-        navLinks.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        body.classList.remove('menu-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    if (menuToggle && navLinks && menuOverlay) {
-        menuToggle.addEventListener('click', function(e) {
-            const isActive = navLinks.classList.toggle('active');
-            menuOverlay.classList.toggle('active', isActive);
-            body.classList.toggle('menu-open', isActive);
-            menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-        });
-        menuOverlay.addEventListener('click', closeMenu);
-        // Fecha ao clicar em um link, mas só depois do clique ser processado
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                setTimeout(closeMenu, 100);
-            });
-        });
-        // Fecha ao redimensionar para desktop
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) closeMenu();
-        });
-    }
-    // ===== FIM MENU MOBILE HAMBÚRGUER =====
+    initializeMobileMenu();
+    initializeFAQ();
 });
 
 // Função para gerenciar a navegação
@@ -202,8 +169,42 @@ function carregarAlertas() {
 // Atualiza os alertas a cada 5 segundos
 setInterval(carregarAlertas, 5000); 
 
-//dom content load
-document.addEventListener('DOMContentLoaded', function() {
+// Função para inicializar o menu mobile
+function initializeMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const body = document.body;
+
+    if (!menuToggle || !navLinks || !menuOverlay) return;
+
+    const closeMenu = () => {
+        navLinks.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    menuToggle.addEventListener('click', () => {
+        const isActive = navLinks.classList.toggle('active');
+        menuOverlay.classList.toggle('active', isActive);
+        body.classList.toggle('menu-open', isActive);
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+
+    menuOverlay.addEventListener('click', closeMenu);
+    
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setTimeout(closeMenu, 100));
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) closeMenu();
+    });
+}
+
+// Função para inicializar o FAQ
+function initializeFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
     
     faqItems.forEach(item => {
@@ -213,7 +214,6 @@ document.addEventListener('DOMContentLoaded', function() {
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             
-            // Fecha todos os outros itens
             faqItems.forEach(otherItem => {
                 if (otherItem !== item) {
                     otherItem.classList.remove('active');
@@ -221,9 +221,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
-            // Toggle do item atual
             item.classList.toggle('active');
             answer.style.maxHeight = isActive ? '0' : answer.scrollHeight + 'px';
         });
     });
+}
+// --- LÓGICA PARA O MODAL DE SIMULAÇÃO DE ALERTA ---
+
+// Espera o documento HTML ser completamente carregado
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Seleciona os elementos do HTML pelos seus IDs
+    const btnSimular = document.getElementById('btnSimular');
+    const modalAlerta = document.getElementById('modalAlerta');
+    const btnFechar = document.getElementById('btnFechar');
+
+    // Se os elementos não existirem na página, o código não executa para evitar erros.
+    if (!btnSimular || !modalAlerta || !btnFechar) {
+        return;
+    }
+
+    // Adiciona um "ouvinte" para o evento de clique no botão "Simular Alerta"
+    btnSimular.addEventListener('click', () => {
+        modalAlerta.classList.add('active'); // Adiciona a classe 'active' para mostrar o modal
+    });
+
+    // Adiciona um "ouvinte" para o evento de clique no botão "Entendi" (dentro do modal)
+    btnFechar.addEventListener('click', () => {
+        modalAlerta.classList.remove('active'); // Remove a classe 'active' para esconder o modal
+    });
+
 });

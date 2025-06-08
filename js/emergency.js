@@ -1,47 +1,35 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const emergencyBtn = document.getElementById('emergencyButton');
-    if (emergencyBtn) {
-        const emergencyModal = document.querySelector('.emergency-modal');
-        const modalClose = document.querySelector('.modal-close');
+    if (!emergencyBtn) return;
 
-        // Abre o modal
-        emergencyBtn.addEventListener('click', function() {
-            emergencyModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Previne scroll
-        });
+    const emergencyModal = document.querySelector('.emergency-modal');
+    const modalClose = document.querySelector('.modal-close');
 
-        // Fecha o modal
-        function closeModal() {
-            emergencyModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restaura scroll
+    const closeModal = () => {
+        emergencyModal.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    // Abre o modal
+    emergencyBtn.addEventListener('click', () => {
+        emergencyModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Fecha o modal
+    modalClose.addEventListener('click', closeModal);
+
+    // Fecha o modal ao clicar fora
+    emergencyModal.addEventListener('click', (e) => {
+        if (e.target === emergencyModal) {
+            closeModal();
         }
+    });
 
-        modalClose.addEventListener('click', closeModal);
-
-        // Fecha o modal ao clicar fora
-        emergencyModal.addEventListener('click', function(e) {
-            if (e.target === emergencyModal) {
-                closeModal();
-            }
-        });
-
-        // Fecha o modal com a tecla ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && emergencyModal.classList.contains('active')) {
-                closeModal();
-            }
-        });
-
-        // Adiciona efeito de hover nos números
-        const emergencyNumbers = document.querySelectorAll('.emergency-number');
-        emergencyNumbers.forEach(number => {
-            number.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-            });
-
-            number.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
-        });
-    }
+    // Fecha o modal com a tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && emergencyModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
 }); 

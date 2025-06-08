@@ -34,10 +34,17 @@ class FormValidator {
 
     // Adiciona mensagem de erro
     addError(field, message) {
-        this.errors.push({
-            field: field,
-            message: message
-        });
+        this.errors.push({ field, message });
+        this.showError(field, message);
+    }
+
+    // Mostra mensagem de erro
+    showError(field, message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = message;
+        field.parentNode.appendChild(errorDiv);
+        field.classList.add('error');
     }
 
     // Limpa mensagens de erro
@@ -45,17 +52,8 @@ class FormValidator {
         this.errors = [];
         const errorElements = this.form.querySelectorAll('.error-message');
         errorElements.forEach(element => element.remove());
-    }
-
-    // Mostra mensagens de erro
-    showErrors() {
-        this.errors.forEach(error => {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.textContent = error.message;
-            error.field.parentNode.appendChild(errorDiv);
-            error.field.classList.add('error');
-        });
+        const errorFields = this.form.querySelectorAll('.error');
+        errorFields.forEach(field => field.classList.remove('error'));
     }
 
     // Validação do formulário de contato
@@ -68,6 +66,8 @@ class FormValidator {
 
         if (!this.validateRequired(name)) {
             this.addError(name, 'Nome é obrigatório');
+        } else if (!this.validateMinLength(name, 3)) {
+            this.addError(name, 'Nome deve ter pelo menos 3 caracteres');
         }
 
         if (!this.validateRequired(email)) {
@@ -82,12 +82,7 @@ class FormValidator {
             this.addError(message, 'Mensagem deve ter no mínimo 10 caracteres');
         }
 
-        if (this.errors.length > 0) {
-            this.showErrors();
-            return false;
-        }
-
-        return true;
+        return this.errors.length === 0;
     }
 
     // Validação do formulário de alerta
@@ -110,214 +105,69 @@ class FormValidator {
             this.addError(location, 'Localização é obrigatória');
         }
 
-        if (this.errors.length > 0) {
-            this.showErrors();
-            return false;
-        }
-
-        return true;
+        return this.errors.length === 0;
     }
 }
 
 // Inicialização dos validadores
 document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        const contactValidator = new FormValidator('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            if (!contactValidator.validateContactForm()) {
-                e.preventDefault();
-            }
-        });
-    }
-
-    const alertForm = document.getElementById('alertForm');
-    if (alertForm) {
-        const alertValidator = new FormValidator('alertForm');
-        alertForm.addEventListener('submit', (e) => {
-            if (!alertValidator.validateAlertForm()) {
-                e.preventDefault();
-            }
-        });
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.contato-form');
-    
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Limpa erros anteriores
-            clearErrors();
-            
-            // Valida campos
-            const nome = validateNome(form.querySelector('#nome'));
-            const email = validateEmail(form.querySelector('#email'));
-            const mensagem = validateMensagem(form.querySelector('#mensagem'));
-            
-            // Se todos os campos são válidos, simula envio
-            if (nome && email && mensagem) {
-                alert('Mensagem enviada com sucesso!');
-                form.reset();
-            }
-        });
-    }
-});
-
-// Função para validar nome
-function validateNome(input) {
-    const value = input.value.trim();
-    const errorSpan = input.nextElementSibling;
-    
-    if (value.length < 3) {
-        showError(input, errorSpan, 'O nome deve ter pelo menos 3 caracteres');
-        return false;
-    }
-    
-    return true;
-}
-
-// Função para validar email
-function validateEmail(input) {
-    const value = input.value.trim();
-    const errorSpan = input.nextElementSibling;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!emailRegex.test(value)) {
-        showError(input, errorSpan, 'Digite um e-mail válido');
-        return false;
-    }
-    
-    return true;
-}
-
-// Função para validar mensagem
-function validateMensagem(input) {
-    const value = input.value.trim();
-    const errorSpan = input.nextElementSibling;
-    
-    if (value.length < 10) {
-        showError(input, errorSpan, 'A mensagem deve ter pelo menos 10 caracteres');
-        return false;
-    }
-    
-    return true;
-}
-
-// Função para mostrar erro
-function showError(input, errorSpan, message) {
-    input.style.border = '2px solid var(--cor-alerta)';
-    errorSpan.innerHTML = message;
-    errorSpan.style.display = 'block';
-}
-
-// Função para limpar erros
-function clearErrors() {
-    const inputs = document.querySelectorAll('.contato-form input, .contato-form textarea');
-    const errorSpans = document.querySelectorAll('.erro');
-    
-    inputs.forEach(input => {
-        input.style.border = '1px solid #ccc';
-    });
-    
-    errorSpans.forEach(span => {
-        span.innerHTML = '';
-        span.style.display = 'none';
-    });
-}
-
-// Validação em tempo real
-document.addEventListener('DOMContentLoaded', function() {
-    const inputs = document.querySelectorAll('.contato-form input, .contato-form textarea');
-    
-    inputs.forEach(input => {
-        input.addEventListener('input', function() {
-            const errorSpan = this.nextElementSibling;
-            
-            if (this.value.trim() !== '') {
-                this.style.border = '1px solid #ccc';
-                errorSpan.style.display = 'none';
-            }
-        });
-    });
-}); 
-
-//parte do script de validação:
-document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona o formulário pelo ID correto: "contatoForm"
     const form = document.getElementById('contatoForm');
+
+    // Se o formulário não existir na página, o código para.
+    if (!form) {
+        return;
+    }
+
+    // Seleciona os campos e os spans de erro
     const nomeInput = document.getElementById('nome');
     const emailInput = document.getElementById('email');
     const mensagemInput = document.getElementById('mensagem');
 
-    function validarEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
+    const nomeErro = document.getElementById('nomeErro');
+    const emailErro = document.getElementById('emailErro');
+    const mensagemErro = document.getElementById('mensagemErro');
 
-    function mostrarErro(input, mensagem) {
-        const erroElement = document.getElementById(input.id + 'Erro');
-        erroElement.textContent = mensagem;
-        erroElement.style.display = 'block';
-        input.style.borderColor = '#e74c3c';
-    }
+    // Adiciona um ouvinte de evento para o envio do formulário
+    form.addEventListener('submit', (event) => {
+        // Previne o envio padrão do formulário para podermos validar primeiro
+        event.preventDefault();
 
-    function limparErro(input) {
-        const erroElement = document.getElementById(input.id + 'Erro');
-        erroElement.style.display = 'none';
-        input.style.borderColor = '#e0e0e0';
-    }
+        let isFormularioValido = true;
 
-    function validarCampo(input, validacao) {
-        if (!validacao(input.value)) {
-            mostrarErro(input, input.dataset.mensagemErro);
-            return false;
-        }
-        limparErro(input);
-        return true;
-    }
-
-    nomeInput.dataset.mensagemErro = 'Por favor, insira seu nome.';
-    emailInput.dataset.mensagemErro = 'Por favor, insira um e-mail válido.';
-    mensagemInput.dataset.mensagemErro = 'Por favor, insira sua mensagem.';
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        let valido = true;
-
-        // Validação do nome
-        if (!validarCampo(nomeInput, value => value.trim() !== '')) {
-            valido = false;
+        // --- Validação do Nome ---
+        if (nomeInput.value.trim() === '') {
+            nomeErro.style.display = 'block'; // Mostra o erro
+            isFormularioValido = false;
+        } else {
+            nomeErro.style.display = 'none'; // Esconde o erro
         }
 
-        // Validação do email
-        if (!validarCampo(emailInput, validarEmail)) {
-            valido = false;
+        // --- Validação do E-mail ---
+        // Regex simples para verificar o formato do e-mail
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+            emailErro.style.display = 'block';
+            isFormularioValido = false;
+        } else {
+            emailErro.style.display = 'none';
         }
 
-        // Validação da mensagem
-        if (!validarCampo(mensagemInput, value => value.trim() !== '')) {
-            valido = false;
+        // --- Validação da Mensagem ---
+        if (mensagemInput.value.trim() === '') {
+            mensagemErro.style.display = 'block';
+            isFormularioValido = false;
+        } else {
+            mensagemErro.style.display = 'none';
         }
 
-        if (valido) {
-            alert('Mensagem enviada com sucesso!');
+        // Se o formulário for válido, pode enviá-lo
+        if (isFormularioValido) {
+            console.log('Formulário enviado com sucesso!');
+            // Aqui você pode adicionar a lógica para enviar os dados para um servidor, se necessário.
+            // Por enquanto, apenas limpamos o formulário e mostramos um alerta.
             form.reset();
+            alert('Mensagem enviada com sucesso!');
         }
     });
-
-    // Validação em tempo real
-    [nomeInput, emailInput, mensagemInput].forEach(input => {
-        input.addEventListener('input', function() {
-            if (this.value.trim() !== '') {
-                if (this.type === 'email' && !validarEmail(this.value)) {
-                    mostrarErro(this, 'Por favor, insira um e-mail válido.');
-                } else {
-                    limparErro(this);
-                }
-            }
-        });
-    });
-});
-  
+}); 

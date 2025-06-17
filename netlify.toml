@@ -2,8 +2,28 @@
   publish = "."
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/obrigado"
+  to = "/obrigado.html"
+  status = 200
+
+[[redirects]]
+  from = "/contato"
+  to = "/contato.html"
+  status = 200
+
+[[redirects]]
+  from = "/solucao"
+  to = "/solucao.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 200
+
+[[redirects]]
+  from = "/integrantes"
+  to = "/integrantes.html"
   status = 200
 
 [build.environment]

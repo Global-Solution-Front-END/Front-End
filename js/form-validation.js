@@ -111,15 +111,12 @@ class FormValidator {
 
 // Inicialização dos validadores
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleciona o formulário pelo ID correto: "contatoForm"
     const form = document.getElementById('contatoForm');
 
-    // Se o formulário não existir na página, o código para.
     if (!form) {
         return;
     }
 
-    // Seleciona os campos e os spans de erro
     const nomeInput = document.getElementById('nome');
     const emailInput = document.getElementById('email');
     const mensagemInput = document.getElementById('mensagem');
@@ -128,23 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailErro = document.getElementById('emailErro');
     const mensagemErro = document.getElementById('mensagemErro');
 
-    // Adiciona um ouvinte de evento para o envio do formulário
-    form.addEventListener('submit', (event) => {
-        // Previne o envio padrão do formulário para podermos validar primeiro
-        event.preventDefault();
-
+    // Função para validar o formulário
+    function validarFormulario() {
         let isFormularioValido = true;
 
-        // --- Validação do Nome ---
+        // Validação do Nome
         if (nomeInput.value.trim() === '') {
-            nomeErro.style.display = 'block'; // Mostra o erro
+            nomeErro.style.display = 'block';
             isFormularioValido = false;
         } else {
-            nomeErro.style.display = 'none'; // Esconde o erro
+            nomeErro.style.display = 'none';
         }
 
-        // --- Validação do E-mail ---
-        // Regex simples para verificar o formato do e-mail
+        // Validação do E-mail
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailInput.value)) {
             emailErro.style.display = 'block';
@@ -153,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emailErro.style.display = 'none';
         }
 
-        // --- Validação da Mensagem ---
+        // Validação da Mensagem
         if (mensagemInput.value.trim() === '') {
             mensagemErro.style.display = 'block';
             isFormularioValido = false;
@@ -161,13 +154,34 @@ document.addEventListener('DOMContentLoaded', () => {
             mensagemErro.style.display = 'none';
         }
 
-        // Se o formulário for válido, pode enviá-lo
-        if (isFormularioValido) {
-            console.log('Formulário enviado com sucesso!');
-            // Aqui você pode adicionar a lógica para enviar os dados para um servidor, se necessário.
-            // Por enquanto, apenas limpamos o formulário e mostramos um alerta.
-            form.reset();
-            alert('Mensagem enviada com sucesso!');
+        return isFormularioValido;
+    }
+
+    // Adiciona validação em tempo real
+    nomeInput.addEventListener('input', () => {
+        if (nomeInput.value.trim() !== '') {
+            nomeErro.style.display = 'none';
         }
+    });
+
+    emailInput.addEventListener('input', () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(emailInput.value)) {
+            emailErro.style.display = 'none';
+        }
+    });
+
+    mensagemInput.addEventListener('input', () => {
+        if (mensagemInput.value.trim() !== '') {
+            mensagemErro.style.display = 'none';
+        }
+    });
+
+    // Validação no envio do formulário
+    form.addEventListener('submit', (event) => {
+        if (!validarFormulario()) {
+            event.preventDefault();
+        }
+        // Se o formulário for válido, ele será enviado normalmente para o FormSubmit
     });
 }); 
